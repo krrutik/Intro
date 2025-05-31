@@ -1,0 +1,49 @@
+
+{%- if section.settings.enable -%}
+  <div class="announcement-bar">
+    <div class="announcement-bar__content">
+      Hey there
+    </div>
+  </div>
+  {{ 'announcement-bar.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
+{%- schema -%}
+{
+  "name": "Announcement Bar",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "Enable announcement bar",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "link_text_color",
+      "label": "Link text color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar",
+      "category": "Header",
+      "blocks": []
+    }
+  ]
+}
+{%- endschema -%}

@@ -1,0 +1,75 @@
+{
+  "general": {
+    "heading": "Heading",
+    "subheading": "Subheading",
+    "accent": "Accent",
+    "body": "Body",
+    "font_family": "Font",
+    "font_size": "Font size",
+    "font_weight": "Font weight",
+    "font_style": "Font style",
+    "font_color": "Font color",
+    "font_style_options": {
+      "normal": "Normal",
+      "italic": "Italic",
+      "oblique": "Oblique"
+    },
+    "font_weight_options": {
+      "100": "Thin",
+      "200": "Extra light",
+      "300": "Light",
+      "400": "Normal",
+      "500": "Medium",
+      "600": "Semi bold",
+      "700": "Bold",
+      "800": "Extra bold",
+      "900": "Black"
+    },
+    "font_size_options": {
+      "xxs": "XXS",
+      "xs": "XS",
+      "sm": "SM",
+      "md": "MD",
+      "lg": "LG",
+      "xl": "XL",
+      "xxl": "XXL"
+    },
+    "line_height": "Line height",
+    "letter_spacing": "Letter spacing",
+    "text_transform": "Text transform",
+  },
+  "name": {
+    "logo_and_favicon": "General",
+    "typography": "Typography",
+  },
+  "content": {
+    "fonts": "Fonts",
+    "paragraph": "Paragraph",
+    "h1": "Heading 1",
+    "h2": "Heading 2",
+    "h3": "Heading 3",
+    "h4": "Heading 4",
+    "h5": "Heading 5",
+    "h6": "Heading 6",
+  },
+  "label": {
+    "logo": "Logo",
+    "favicon": "Favicon",
+    "primary": "Primary",
+  },
+  "info": {},
+  "options": {
+    "default": "Default",
+    "tight": "Tight",
+    "tighter": "Tighter",
+    "normal": "Normal",
+    "relaxed": "Relaxed",
+    "loose": "Loose",
+    "wide": "Wide",
+    "wider": "Wider",
+    "widest": "Widest",
+    "uppercase": "Uppercase",
+    "lowercase": "Lowercase",
+    "capitalize": "Capitalize",
+  }
+}
