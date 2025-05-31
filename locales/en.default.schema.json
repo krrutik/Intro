@@ -39,6 +39,9 @@
     "text_transform": "Text transform",
   },
   "name": {
+    "announcement_bar": "Announcement bar",
+    "header": "Header",
+    "footer": "Footer",
     "logo_and_favicon": "General",
     "typography": "Typography",
   },
