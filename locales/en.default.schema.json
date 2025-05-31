@@ -1,5 +1,8 @@
 {
   "general": {
+    "header": "Header",
+    "template": "Template",
+    "footer": "Footer",
     "heading": "Heading",
     "subheading": "Subheading",
     "accent": "Accent",
