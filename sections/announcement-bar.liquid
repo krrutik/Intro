@@ -69,13 +69,38 @@
       "type": "richtext",
       "id": "contact_info",
       "label": "t:sections.announcement_bar.label.contact_info",
-      "default": "<p>Contact us at mailto:krutikmandaviya.gg@gmail.com</p>"
+      "default": "<p>Contact us at <a href=\"mailto:krutikmandaviya.gg@gmail.com\" title=\"contact-us-email\">krutikmandaviya.gg@gmail.com</a></p>"
     }
   ],
   "presets": [
     {
       "name": "t:name.announcement_bar",
-      "category": "t:category.header"
+      "category": "t:category.header",
+      "blocks": [
+        {
+          "type": "swiper-slider",
+          "settings": {
+            "loop": true,
+            "autoplay": true,
+            "fade_effect": true,
+            "navigation": false
+          },
+          "blocks": [
+            {
+              "type": "swiper-slide",
+              "settings": {
+                "text": "free shipping on orders over $70"
+              }
+            },
+            { 
+              "type": "swiper-slide", 
+              "settings": { 
+                "text": "Use the CODE ”FIRST” to get 10% Off Your First Order."
+              } 
+            }
+          ]
+        }
+      ]
     }
   ]
 }
