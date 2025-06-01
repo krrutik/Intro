@@ -28,10 +28,10 @@
             "autoplay": false,
             "autoplay_delay": 3000,
             "speed": 500,
-            "slides_to_show": "1",
+            "slides_to_show": "2",
             "space_between": 10,
             "show_navigation": true,
-            "show_pagination": true
+            "show_pagination": false
           },
           "blocks": {
             "swiper_slide_4cYHUR": {
