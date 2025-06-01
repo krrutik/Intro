@@ -1,0 +1,107 @@
+<swiper-slider 
+  class="swiper {{ block.id }}" 
+  id="{{ block.id }}"
+  data-loop="{{ block.settings.loop }}"
+  data-autoplay="{{ block.settings.autoplay }}"
+  data-autoplay-delay="{{ block.settings.autoplay_delay }}"
+  data-speed="{{ block.settings.speed }}"
+  data-slides-per-view="{{ block.settings.slides_to_show }}"
+  data-space-between="{{ block.settings.space_between }}"
+  data-show-navigation="{{ block.settings.show_navigation }}"
+  data-show-pagination="{{ block.settings.show_pagination }}"
+>
+  <div class="swiper-wrapper">
+    {%- content_for 'blocks' -%}
+  </div>
+
+  {%- if block.settings.show_navigation -%}
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>  
+  {%- endif -%}
+
+  {%- if block.settings.show_pagination -%}
+    <div class="swiper-pagination"></div>  
+  {%- endif -%}
+</swiper-slider>
+
+<script type="module" src="{{ 'element-swiper-slider.js' | asset_url }}"></script>
+
+{%- schema -%}
+{
+  "name": "t:general.swiper_slider",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Enable Loop",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable Autoplay",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "autoplay_delay",
+      "label": "Autoplay Delay (ms)",
+      "default": 3000,
+    },
+    {
+      "type": "number",
+      "id": "speed",
+      "label": "Transition Speed (ms)",
+      "default": 500
+    },
+    {
+      "type": "select",
+      "id": "slides_to_show",
+      "label": "Slides to Show",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "space_between",
+      "label": "Space Between Slides (px)",
+      "default": 10,
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation",
+      "label": "Show Navigation Arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "Show Pagination Dots",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "swiper-slide"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.swiper_slider",
+      "category": "t:category.slideshow",
+      "blocks": [
+        { "type": "swiper-slide" },
+        { "type": "swiper-slide" }
+      ]
+    }
+  ]
+}
+{%- endschema -%}

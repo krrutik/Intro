@@ -2,7 +2,7 @@
 {%- if section.settings.enable -%}
   <div class="announcement-bar">
     <div class="announcement-bar__content">
-      Hey there
+        {% content_for "blocks" %}
     </div>
   </div>
   {{ 'announcement-bar.css' | asset_url | stylesheet_tag }}
@@ -11,7 +11,7 @@
 {%- schema -%}
 {
   "name": "t:name.announcement_bar",
-  "tag": "section",
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
   "settings": [
     {
       "type": "checkbox",
@@ -40,9 +40,8 @@
   ],
   "presets": [
     {
-      "name": "Announcement Bar",
-      "category": "Header",
-      "blocks": []
+      "name": "t:name.announcement_bar",
+      "category": "t:category.header"
     }
   ]
 }
