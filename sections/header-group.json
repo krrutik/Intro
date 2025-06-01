@@ -17,58 +17,66 @@
         "menu": ""
       }
     },
-    "announcement_bar_X9LiqG": {
+    "announcement_bar_aqD77A": {
       "type": "announcement-bar",
       "blocks": {
-        "swiper_slider_9xn8FV": {
+        "swiper_slider_Kf9Q7M": {
           "type": "swiper-slider",
           "name": "t:general.swiper_slider",
           "settings": {
             "loop": true,
-            "autoplay": false,
+            "breakpoints": "",
+            "centered_slides": false,
+            "allow_touch_move": false,
+            "speed": 1000,
+            "autoplay": true,
             "autoplay_delay": 3000,
-            "speed": 500,
-            "slides_to_show": "1",
-            "space_between": 10,
-            "show_navigation": true,
-            "show_pagination": false
+            "fade_effect": true,
+            "flip_effect": false,
+            "free_mode": false,
+            "navigation": false,
+            "pagination": false,
+            "scrollbar": false,
+            "direction": "horizontal"
           },
           "blocks": {
-            "swiper_slide_4cYHUR": {
+            "swiper_slide_F4mHRA": {
               "type": "swiper-slide",
               "settings": {
-                "text": "Lorem ipsum 1"
+                "text": "free shipping on orders over  $70"
               },
               "blocks": {}
             },
-            "swiper_slide_7y4TyR": {
+            "swiper_slide_TzPdMb": {
               "type": "swiper-slide",
               "settings": {
-                "text": "Lorem ipsum 2"
+                "text": "Use the CODE ”FIRST” to get 10% Off Your First Order."
               },
               "blocks": {}
             }
           },
           "block_order": [
-            "swiper_slide_4cYHUR",
-            "swiper_slide_7y4TyR"
+            "swiper_slide_F4mHRA",
+            "swiper_slide_TzPdMb"
           ]
         }
       },
       "block_order": [
-        "swiper_slider_9xn8FV"
+        "swiper_slider_Kf9Q7M"
       ],
       "name": "t:name.announcement_bar",
       "settings": {
         "enable": true,
-        "background_color": "#000000",
-        "text_color": "#FFFFFF",
-        "link_text_color": "#FFFFFF"
+        "min_height": 40,
+        "background_color": "#C2E5FF",
+        "text_color": "#293132",
+        "enable_contact_info": true,
+        "contact_info": "<p>Contact us at <a href=\"mailto:krutikmandaviya.gg@gmail.com\" title=\"contact-us-email\">krutikmandaviya.gg@gmail.com</a></p>"
       }
     }
   },
   "order": [
     "header",
-    "announcement_bar_X9LiqG"
+    "announcement_bar_aqD77A"
   ]
 }
