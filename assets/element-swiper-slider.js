@@ -17,16 +17,6 @@ class SwiperSlider extends HTMLElement {
     if (this._initialized) return;
     this._initialized = true;
 
-    // Read data- attributes (all come back as strings; convert where needed)
-    const loop = this.getAttribute('data-loop') === 'true';
-    const autoplay = this.getAttribute('data-autoplay') === 'true';
-    const autoplayDelay = parseInt(this.getAttribute('data-autoplay-delay')) || 0;
-    const speed = parseInt(this.getAttribute('data-speed')) || 300;
-    const slidesPerView = parseInt(this.getAttribute('data-slides-per-view')) || 1;
-    const spaceBetween = parseInt(this.getAttribute('data-space-between')) || 0;
-    const showNavigation = this.getAttribute('data-show-navigation') === 'true';
-    const showPagination = this.getAttribute('data-show-pagination') === 'true';
-
     // Find required sub‐elements
     const wrapper = this.querySelector('.swiper-wrapper');
     if (!wrapper) {
@@ -35,33 +25,132 @@ class SwiperSlider extends HTMLElement {
     }
 
     // Build Swiper options object
-    const options = {
-      loop,
-      speed,
-      slidesPerView,
-      spaceBetween
-    };
+    const options = this._buildOptions();
 
-    if (autoplay) {
-      options.autoplay = { delay: autoplayDelay, disableOnInteraction: false };
+    // Finally initialize Swiper on this element
+    new Swiper(`.${this.id}`, options);
+  }
+
+  _buildOptions() {
+    const options = {};
+
+    // Helper to parse boolean attributes
+    const parseBool = (attr) => this.getAttribute(attr) === 'true';
+    
+
+    // ─── Loop ───
+    if (parseBool('data-loop')) {
+      options.loop = true;
     }
 
-    if (showNavigation) {
+    // ─── Direction ───
+    const direction = this.getAttribute('data-direction');
+    if (direction === 'horizontal' || direction === 'vertical') {
+      options.direction = direction;
+    }
+
+    // ─── Speed (animating) ───
+    const speed = parseInt(this.getAttribute('data-speed'), 10);
+    if (!Number.isNaN(speed) && speed >= 0) {
+      options.speed = speed;
+    }
+
+    // ─── Slides Per View ───
+    const slidesPerView = parseInt(this.getAttribute('data-slides-per-view'), 10);
+    if (!Number.isNaN(slidesPerView) && slidesPerView > 0) {
+      options.slidesPerView = slidesPerView;
+    }
+
+    // ─── Space Between ───
+    const spaceBetween = parseInt(this.getAttribute('data-space-between'), 10);
+    if (!Number.isNaN(spaceBetween) && spaceBetween >= 0) {
+      options.spaceBetween = spaceBetween;
+    }
+
+    // ─── Centered Slides ───
+    if (parseBool('data-centered-slides')) {
+      options.centeredSlides = true;
+    }
+
+    // ─── Allow Touch Move ───
+    if (parseBool('data-allow-touch-move') === false) {
+      options.allowTouchMove = false;
+    }
+
+    // ─── Free Mode ───
+    if (parseBool('data-free-mode')) {
+      options.freeMode = true;
+    }
+
+    // ─── Effects: Fade or Flip ───
+    if (parseBool('data-fade-effect')) {
+      options.effect = 'fade';
+      options.fadeEffect = { crossFade: true };
+    } else if (parseBool('data-flip-effect')) {
+      options.effect = 'flip';
+      options.flipEffect = { slideShadows: true };
+    }
+
+    // ─── Autoplay ───
+    if (parseBool('data-autoplay')) {
+      const delay = parseInt(this.getAttribute('data-autoplay-delay'), 10);
+      options.autoplay = {
+        delay: !Number.isNaN(delay) && delay >= 0 ? delay : 3000,
+        disableOnInteraction: false
+      };
+    }
+
+    // ─── Navigation ───
+    if (parseBool('data-navigation')) {
       options.navigation = {
         nextEl: this.querySelector('.swiper-button-next'),
         prevEl: this.querySelector('.swiper-button-prev')
       };
     }
 
-    if (showPagination) {
+    // ─── Pagination ───
+    if (parseBool('data-pagination')) {
       options.pagination = {
         el: this.querySelector('.swiper-pagination'),
         clickable: true
       };
     }
 
-    // Finally initialize Swiper on this element
-    new Swiper(`.${this.id}`, options);
+    // ─── Scrollbar ───
+    if (parseBool('data-scrollbar')) {
+      options.scrollbar = {
+        el: this.querySelector('.swiper-scrollbar'),
+        draggable: true
+      };
+    }
+
+    // ─── Thumbs ───
+    const thumbsSelector = this.getAttribute('data-thumbs');
+    if (thumbsSelector) {
+      const thumbsEl = document.querySelector(thumbsSelector);
+      if (thumbsEl && thumbsEl.swiper) {
+        options.thumbs = { swiper: thumbsEl.swiper };
+      } else {
+        console.warn(`Thumbs swiper not found or not initialized for selector: ${thumbsSelector}`);
+      }
+    }
+
+    // ─── Breakpoints (JSON) ───
+    const breakpointsAttr = this.getAttribute('data-breakpoints');
+    if (breakpointsAttr) {
+      try {
+        const parsed = JSON.parse(breakpointsAttr);
+        if (typeof parsed === 'object' && parsed !== null) {
+          options.breakpoints = parsed;
+        } else {
+          console.warn('Invalid breakpoints: not a valid object');
+        }
+      } catch (err) {
+        console.warn('Error parsing breakpoints JSON:', err);
+      }
+    }
+
+    return options;
   }
 }
 

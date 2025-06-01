@@ -2,25 +2,35 @@
   class="swiper {{ block.id }}" 
   id="{{ block.id }}"
   data-loop="{{ block.settings.loop }}"
+  data-breakpoints='{{ block.settings.breakpoints | escape }}'
+  data-centered-slides="{{ block.settings.centered_slides }}"
+  data-allow-touch-move="{{ block.settings.allow_touch_move }}"
+  data-speed="{{ block.settings.speed }}"
   data-autoplay="{{ block.settings.autoplay }}"
   data-autoplay-delay="{{ block.settings.autoplay_delay }}"
-  data-speed="{{ block.settings.speed }}"
-  data-slides-per-view="{{ block.settings.slides_to_show }}"
-  data-space-between="{{ block.settings.space_between }}"
-  data-show-navigation="{{ block.settings.show_navigation }}"
-  data-show-pagination="{{ block.settings.show_pagination }}"
+  data-fade-effect="{{ block.settings.fade_effect }}"
+  data-flip-effect="{{ block.settings.flip_effect }}"
+  data-free-mode="{{ block.settings.free_mode }}"
+  data-navigation="{{ block.settings.navigation }}"
+  data-pagination="{{ block.settings.pagination }}"
+  data-scrollbar="{{ block.settings.scrollbar }}"
+  data-direction="{{ block.settings.direction }}"
 >
   <div class="swiper-wrapper">
     {%- content_for 'blocks' -%}
   </div>
 
-  {%- if block.settings.show_navigation -%}
+  {%- if block.settings.navigation -%}
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>  
   {%- endif -%}
 
-  {%- if block.settings.show_pagination -%}
+  {%- if block.settings.pagination -%}
     <div class="swiper-pagination"></div>  
+  {%- endif -%}
+
+  {%- if block.settings.scrollbar -%}
+    <div class="swiper-scrollbar"></div>  
   {%- endif -%}
 </swiper-slider>
 
@@ -33,60 +43,96 @@
     {
       "type": "checkbox",
       "id": "loop",
-      "label": "Enable Loop",
+      "label": "t:blocks.swiper_slider.label.loop",
       "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "breakpoints",
+      "label": "t:blocks.swiper_slider.label.breakpoints",
+      "info": "Example: {\"768\":{\"slidesPerView\":2},\"1024\":{\"slidesPerView\":3}}"
+    },
+    {
+      "type": "checkbox",
+      "id": "centered_slides",
+      "label": "t:blocks.swiper_slider.label.centered_slides",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "allow_touch_move",
+      "label": "t:blocks.swiper_slider.label.allow_touch_move",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "speed",
+      "label": "t:blocks.swiper_slider.label.speed",
+      "default": 300
     },
     {
       "type": "checkbox",
       "id": "autoplay",
-      "label": "Enable Autoplay",
+      "label": "t:blocks.swiper_slider.label.autoplay",
       "default": false
     },
     {
       "type": "number",
       "id": "autoplay_delay",
-      "label": "Autoplay Delay (ms)",
-      "default": 3000,
+      "label": "t:blocks.swiper_slider.label.autoplay_delay",
+      "default": 3000
     },
     {
-      "type": "number",
-      "id": "speed",
-      "label": "Transition Speed (ms)",
-      "default": 500
+      "type": "checkbox",
+      "id": "fade_effect",
+      "label": "t:blocks.swiper_slider.label.fade_effect",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "flip_effect",
+      "label": "t:blocks.swiper_slider.label.flip_effect",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "free_mode",
+      "label": "t:blocks.swiper_slider.label.free_mode",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "navigation",
+      "label": "t:blocks.swiper_slider.label.navigation",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "pagination",
+      "label": "t:blocks.swiper_slider.label.pagination",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "scrollbar",
+      "label": "t:blocks.swiper_slider.label.scrollbar",
+      "default": false
     },
     {
       "type": "select",
-      "id": "slides_to_show",
-      "label": "Slides to Show",
+      "id": "direction",
+      "label": "t:blocks.swiper_slider.label.direction",
+      "default": "horizontal",
       "options": [
-        { "value": "1", "label": "1" },
-        { "value": "2", "label": "2" },
-        { "value": "3", "label": "3" },
-        { "value": "4", "label": "4" }
-      ],
-      "default": "1"
+        { "value": "horizontal", "label": "t:options.horizontal" },
+        { "value": "vertical", "label": "t:options.vertical" }
+      ]
     },
     {
-      "type": "range",
-      "id": "space_between",
-      "label": "Space Between Slides (px)",
-      "default": 10,
-      "min": 0,
-      "max": 100,
-      "step": 1
-    },
-    {
-      "type": "checkbox",
-      "id": "show_navigation",
-      "label": "Show Navigation Arrows",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_pagination",
-      "label": "Show Pagination Dots",
-      "default": true
+      "type": "paragraph",
+      "content": "Thumbs require linking to another Swiper instance manually in JS."
     }
+
   ],
   "blocks": [
     {
@@ -98,8 +144,18 @@
       "name": "t:general.swiper_slider",
       "category": "t:category.slideshow",
       "blocks": [
-        { "type": "swiper-slide" },
-        { "type": "swiper-slide" }
+        {
+          "type": "swiper-slide",
+          "settings": {
+            "text": "free shipping on orders over  $70"
+          }
+        },
+        { 
+          "type": "swiper-slide", 
+          "settings": { 
+            "text": "Use the CODE ”FIRST” to get 10% Off Your First Order."
+          } 
+        }
       ]
     }
   ]

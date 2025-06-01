@@ -109,9 +109,43 @@
     "uppercase": "Uppercase",
     "lowercase": "Lowercase",
     "capitalize": "Capitalize",
+    "horizontal": "Horizontal",
+    "vertical": "Vertical",
   },
   "category": {
     "header": "Header",
     "slideshow": "Slideshow",
+  },
+  "sections": {
+    "announcement_bar": {
+      "label": {
+        "enable": "Enable announcement bar",
+        "min_height": "Minimum height (px)",
+        "background_color": "Background color",
+        "text_color": "Text color",
+        "enable_contact_info": "Enable contact info",
+        "contact_info": "Contact info",
+      }
+    },
+  },
+  "blocks": {
+    "swiper_slider": {
+      "label": {
+        "loop": "Loop slides",
+        "breakpoints": "Breakpoints (JSON)",
+        "centered_slides": "Center active slide",
+        "allow_touch_move": "Allow touch/swipe interaction",
+        "speed": "Transition speed (ms)",
+        "autoplay": "Enable autoplay",
+        "autoplay_delay": "Autoplay delay (ms)",
+        "fade_effect": "Enable fade effect",
+        "flip_effect": "Enable flip effect",
+        "free_mode": "Enable free mode",
+        "navigation": "Navigation arrows",
+        "pagination": "Pagination bullets",
+        "scrollbar": "Scrollbar",
+        "direction": "Direction",
+      }
+    },
   }
 }

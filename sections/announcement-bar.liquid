@@ -1,12 +1,34 @@
 
 {%- if section.settings.enable -%}
-  <div class="announcement-bar">
-    <div class="announcement-bar__content">
-        {% content_for "blocks" %}
+  <div class="announcement-bar d-flex align-items-center">
+    <div class="container py-1">
+      <div class="row justify-content-end" id="announcement-bar__content">
+          <div class="col-12 col-lg-6 text-center announcement-bar__text">
+            {%- content_for "blocks" -%}
+          </div>
+          {%- if section.settings.enable_contact_info and section.settings.contact_info != blank -%}
+            <div class="col-12 col-lg-3">
+              <div class="d-flex justify-content-end justify-content-center w-100 h-100">
+                <div class="announcement-bar__contact-info">
+                  {{ section.settings.contact_info }}
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+      </div>
     </div>
   </div>
+  
   {{ 'announcement-bar.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
+
+<style>
+  .announcement-bar {
+    min-height: {{ section.settings.min_height }}px;
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+  }
+</style>
 
 {%- schema -%}
 {
@@ -16,26 +38,38 @@
     {
       "type": "checkbox",
       "id": "enable",
-      "label": "Enable announcement bar",
+      "label": "t:sections.announcement_bar.label.enable",
       "default": true
+    },
+    {
+      "type": "number",
+      "id": "min_height",
+      "label": "t:sections.announcement_bar.label.min_height",
+      "default": 40
     },
     {
       "type": "color",
       "id": "background_color",
-      "label": "Background color",
-      "default": "#000000"
+      "label": "t:sections.announcement_bar.label.background_color",
+      "default": "#C2E5FF"
     },
     {
       "type": "color",
       "id": "text_color",
-      "label": "Text color",
-      "default": "#FFFFFF"
+      "label": "t:sections.announcement_bar.label.text_color",
+      "default": "#293132"
     },
     {
-      "type": "color",
-      "id": "link_text_color",
-      "label": "Link text color",
-      "default": "#FFFFFF"
+      "type": "checkbox",
+      "id": "enable_contact_info",
+      "label": "t:sections.announcement_bar.label.enable_contact_info",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "contact_info",
+      "label": "t:sections.announcement_bar.label.contact_info",
+      "default": "<p>Contact us at mailto:krutikmandaviya.gg@gmail.com</p>"
     }
   ],
   "presets": [
