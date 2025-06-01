@@ -17,20 +17,19 @@
         "menu": ""
       }
     },
-    "announcement_bar_aqD77A": {
+    "announcement_bar_Mwbk4D": {
       "type": "announcement-bar",
       "blocks": {
-        "swiper_slider_Kf9Q7M": {
+        "swiper_slider_jamFU4": {
           "type": "swiper-slider",
-          "name": "t:general.swiper_slider",
           "settings": {
             "loop": true,
             "breakpoints": "",
             "centered_slides": false,
-            "allow_touch_move": false,
+            "allow_touch_move": true,
             "speed": 1000,
             "autoplay": true,
-            "autoplay_delay": 3000,
+            "autoplay_delay": 5000,
             "fade_effect": true,
             "flip_effect": false,
             "free_mode": false,
@@ -40,14 +39,14 @@
             "direction": "horizontal"
           },
           "blocks": {
-            "swiper_slide_F4mHRA": {
+            "swiper_slide_Lj7xNU": {
               "type": "swiper-slide",
               "settings": {
-                "text": "free shipping on orders over  $70"
+                "text": "free shipping on orders over $70"
               },
               "blocks": {}
             },
-            "swiper_slide_TzPdMb": {
+            "swiper_slide_LBjxW9": {
               "type": "swiper-slide",
               "settings": {
                 "text": "Use the CODE ”FIRST” to get 10% Off Your First Order."
@@ -56,13 +55,13 @@
             }
           },
           "block_order": [
-            "swiper_slide_F4mHRA",
-            "swiper_slide_TzPdMb"
+            "swiper_slide_Lj7xNU",
+            "swiper_slide_LBjxW9"
           ]
         }
       },
       "block_order": [
-        "swiper_slider_Kf9Q7M"
+        "swiper_slider_jamFU4"
       ],
       "name": "t:name.announcement_bar",
       "settings": {
@@ -76,7 +75,7 @@
     }
   },
   "order": [
-    "header",
-    "announcement_bar_aqD77A"
+    "announcement_bar_Mwbk4D",
+    "header"
   ]
 }
