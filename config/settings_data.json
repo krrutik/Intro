@@ -8,5 +8,9 @@
  * ------------------------------------------------------------
  */
 {
-  "current": {}
+  "current": {
+    "logo": "shopify://shop_images/logo.svg",
+    "favicon": "shopify://shop_images/favicon.svg",
+    "content_for_index": []
+  }
 }

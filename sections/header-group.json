@@ -12,7 +12,8 @@
   "name": "t:general.header",
   "sections": {
     "header": {
-      "type": "header"
+      "type": "header",
+      "settings": {}
     },
     "announcement_bar_Mwbk4D": {
       "type": "announcement-bar",
@@ -60,6 +61,7 @@
       "block_order": [
         "swiper_slider_jamFU4"
       ],
+      "disabled": true,
       "name": "t:name.announcement_bar",
       "settings": {
         "enable": true,
@@ -68,8 +70,7 @@
         "text_color": "#293132",
         "enable_contact_info": true,
         "contact_info": "<p>Contact us at <a href=\"mailto:krutikmandaviya.gg@gmail.com\" title=\"contact-us-email\">krutikmandaviya.gg@gmail.com</a></p>"
-      },
-      "disabled": true
+      }
     }
   },
   "order": [
