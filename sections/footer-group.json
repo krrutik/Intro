@@ -16,7 +16,8 @@
       "settings": {
         "menu": "",
         "show_payment_icons": true
-      }
+      },
+      "disabled": true,
     }
   },
   "order": [

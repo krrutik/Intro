@@ -1,0 +1,14 @@
+header {
+    top: var(--announcement-bar-height);
+    position: relative;
+    z-index: 1000;
+}
+
+header.sticky {
+    position: sticky;
+    top: 0;
+}
+
+.menu-links .menu-link-item > .menu-link {
+    text-decoration: none;
+}

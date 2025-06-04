@@ -2,8 +2,8 @@
 {%- if section.settings.enable -%}
   <div class="announcement-bar d-flex align-items-center py-1" role="region" aria-label="Announcements">
     <div class="container">
-      <div class="row justify-content-end" id="announcement-bar__content">
-          <div class="col-12 col-lg-6 text-center" id="announcement-bar__text">
+      <div class="row justify-content-end align-items-center text-center" id="announcement-bar__content">
+          <div class="col-12 col-lg-6" id="announcement-bar__text">
             {%- content_for "blocks" -%}
           </div>
           {%- if section.settings.enable_contact_info and section.settings.contact_info != blank -%}
@@ -21,8 +21,12 @@
 {%- endif -%}
 
 <style>
+  :root {
+    --announcement-bar-height: {{ section.settings.min_height }}px;
+  }
+
   .announcement-bar {
-    min-height: {{ section.settings.min_height }}px;
+    min-height: var(--announcement-bar-height);
     background-color: {{ section.settings.background_color }};
     color: {{ section.settings.text_color }};
   }
@@ -36,37 +40,37 @@
     {
       "type": "checkbox",
       "id": "enable",
-      "label": "t:sections.announcement_bar.label.enable",
+      "label": "t:label.enable",
       "default": true
     },
     {
       "type": "number",
       "id": "min_height",
-      "label": "t:sections.announcement_bar.label.min_height",
+      "label": "t:label.min_height",
       "default": 40
     },
     {
       "type": "color",
       "id": "background_color",
-      "label": "t:sections.announcement_bar.label.background_color",
+      "label": "t:label.background_color",
       "default": "#C2E5FF"
     },
     {
       "type": "color",
       "id": "text_color",
-      "label": "t:sections.announcement_bar.label.text_color",
+      "label": "t:label.text_color",
       "default": "#293132"
     },
     {
       "type": "checkbox",
       "id": "enable_contact_info",
-      "label": "t:sections.announcement_bar.label.enable_contact_info",
+      "label": "t:label.enable_contact_info",
       "default": true
     },
     {
       "type": "richtext",
       "id": "contact_info",
-      "label": "t:sections.announcement_bar.label.contact_info",
+      "label": "t:label.contact_info",
       "default": "<p>Contact us at <a href=\"mailto:krutikmandaviya.gg@gmail.com\" title=\"contact-us-email\">krutikmandaviya.gg@gmail.com</a></p>"
     }
   ],

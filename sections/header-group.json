@@ -12,10 +12,7 @@
   "name": "t:general.header",
   "sections": {
     "header": {
-      "type": "header",
-      "settings": {
-        "menu": ""
-      }
+      "type": "header"
     },
     "announcement_bar_Mwbk4D": {
       "type": "announcement-bar",
@@ -71,7 +68,8 @@
         "text_color": "#293132",
         "enable_contact_info": true,
         "contact_info": "<p>Contact us at <a href=\"mailto:krutikmandaviya.gg@gmail.com\" title=\"contact-us-email\">krutikmandaviya.gg@gmail.com</a></p>"
-      }
+      },
+      "disabled": true
     }
   },
   "order": [

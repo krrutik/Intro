@@ -1,66 +1,109 @@
-<header>
-  <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
-  </h2>
-
-  <div class="header__menu">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
+<site-header class="w-100 h-100 d-flex align-items-center" role="banner" aria-label="Site header">
+  <div class="container">
+    <nav id="desktop__nav" aria-label="Desktop navigation">
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ shop.url }}" class="text-decoration-none" aria-label="{{ shop.name }}">
+            {%- if settings.logo != blank -%}
+              <img src="{{ settings.logo | image_url: width: 160, height: 35 }}" alt="{{ shop.name }} logo" class="site-logo" width="160" height="35">
+              <span class="visually-hidden">{{ shop.name }}</span>
+            {%- else -%}
+              <h1>{{ shop.name }}</h1>
+            {%- endif -%}
+          </a>
+        </div>
+        <div class="col-8">
+          {%- if section.settings.menu != blank -%}
+            <ul class="w-100 h-100 d-flex align-items-center list-unstyled menu-links gap-4" role="list">
+              {%- for link in section.settings.menu.links -%}
+                <li class="menu-link-item" role="listitem">
+                  <a href="{{ link.url }}" class="menu-link">{{ link.title }}</a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </div>
+        <div class="col-2"></div>
+      </div>
+    </nav>
+    <nav id="mobile__nav" aria-label="Mobile navigation">
+    </nav>
   </div>
+</site-header>
 
-  <div class="header__icons">
-    {% if shop.customer_accounts_enabled %}
-      {{ 'icon-account.svg' | inline_asset_content | link_to: routes.account_url }}
-    {% endif %}
+{{ 'element-header.css' | asset_url | stylesheet_tag }}
+<script type="module" src="{{ 'element-header.js' | asset_url }}"></script>
 
-    <a href="{{ routes.cart_url }}">
-      {% if cart.item_count > 0 %}
-        <sup>{{ cart.item_count }}</sup>
-      {% endif %}
+<style>
+  :root {
+    --site-header-height: {{ section.settings.min_height }}px;
+  }
 
-      {{ 'icon-cart.svg' | inline_asset_content }}
-    </a>
-  </div>
-</header>
-
-{% stylesheet %}
   header {
-    height: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    height: var(--site-header-height);
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
   }
-  header a {
-    position: relative;
-    text-decoration: none;
-    color: var(--color-foreground);
-  }
-  header a sup {
-    position: absolute;
-    left: 100%;
-    overflow: hidden;
-    max-width: var(--page-margin);
-  }
-  header svg {
-    width: 2rem;
-  }
-  header .header__menu,
-  header .header__icons {
-    display: flex;
-    gap: 1rem;
-  }
-{% endstylesheet %}
+</style>
 
-{% schema %}
+{%- javascript -%}
+  document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('header');
+    if (header) {
+      header.classList.toggle('sticky', {{ section.settings.sticky_header }});
+    }
+  });
+{%- endjavascript -%}
+
+{%- schema -%}
 {
   "name": "t:name.header",
+  "tag": "header",
   "settings": [
+    {
+      "type": "select",
+      "id": "sticky",
+      "label": "t:label.sticky_behavior",
+      "default": "always",
+      "options": [
+        {
+          "value": "always",
+          "label": "t:options.always"
+        },
+        {
+          "value": "on-scroll-up",
+          "label": "t:options.on_scroll_up"
+        },
+        {
+          "value": "none",
+          "label": "t:options.never"
+        }
+      ]
+    },
+    {
+      "type": "number",
+      "id": "min_height",
+      "label": "t:label.min_height",
+      "default": 80
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:label.background_color",
+      "default": "#F1F5F9"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:label.text_color",
+      "default": "#293132"
+    },
     {
       "type": "link_list",
       "id": "menu",
-      "label": "t:labels.menu"
+      "label": "t:label.menu",
+      "default": "main-menu"
     }
   ]
 }
-{% endschema %}
+{%- endschema -%}

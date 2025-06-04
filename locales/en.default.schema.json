@@ -103,6 +103,14 @@
     "favicon": "Favicon",
     "primary": "Primary",
     "text": "Text",
+    "enable": "Enable",
+    "min_height": "Minimum height (px)",
+    "background_color": "Background color",
+    "text_color": "Text color",
+    "enable_contact_info": "Enable contact info",
+    "contact_info": "Contact info",
+    "sticky_behavior": "Sticky behavior",
+    "menu": "Menu",
   },
   "info": {},
   "options": {
@@ -120,22 +128,13 @@
     "capitalize": "Capitalize",
     "horizontal": "Horizontal",
     "vertical": "Vertical",
+    "always": "Always",
+    "on_scroll_up": "On scroll up",
+    "never": "Never",
   },
   "category": {
     "header": "Header",
     "slideshow": "Slideshow",
-  },
-  "sections": {
-    "announcement_bar": {
-      "label": {
-        "enable": "Enable announcement bar",
-        "min_height": "Minimum height (px)",
-        "background_color": "Background color",
-        "text_color": "Text color",
-        "enable_contact_info": "Enable contact info",
-        "contact_info": "Contact info",
-      }
-    },
   },
   "blocks": {
     "swiper_slider": {
