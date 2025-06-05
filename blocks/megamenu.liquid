@@ -1,0 +1,65 @@
+<div class="dropdown-megamenu w-100 position-absolute top-100 start-0" data-menu-handler="{{ block.settings.menu_handler }}">
+  <div class="container py-4">
+    <div class="row">
+      <div class="col-md-3">
+        
+      </div>
+
+      <div class="col-md-3">
+        
+      </div>
+
+      <div class="col-md-3">
+        
+      </div>
+
+      <div class="col-md-3">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .dropdown-megamenu {
+    background-color: {{ block.settings.background_color }};
+    color: {{ block.settings.text_color }};
+  }
+</style>
+
+{%- schema -%}
+{
+  "name": "t:general.megamenu",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "t:label.enable",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:label.background_color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:label.text_color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "menu_handler",
+      "label": "t:label.menu_handler",
+    },
+  ],
+  "presets": [
+    {
+      "name": "t:general.megamenu",
+      "category": "t:category.menu"
+    }
+  ]
+}
+{%- endschema -%}

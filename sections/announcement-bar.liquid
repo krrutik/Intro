@@ -17,7 +17,7 @@
     </div>
   </div>
   
-  {{ 'announcement-bar.css' | asset_url | stylesheet_tag }}
+  {% comment %} {{ 'announcement-bar.css' | asset_url | stylesheet_tag }} {% endcomment %}
 {%- endif -%}
 
 <style>
@@ -35,7 +35,7 @@
 {%- schema -%}
 {
   "name": "t:name.announcement_bar",
-  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "blocks": [{ "type": "@theme" }],
   "settings": [
     {
       "type": "checkbox",

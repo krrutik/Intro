@@ -80,6 +80,7 @@
     "line_height": "Line height",
     "letter_spacing": "Letter spacing",
     "text_transform": "Text transform",
+    "megamenu": "Mega menu",
   },
   "name": {
     "announcement_bar": "Announcement bar",
@@ -111,6 +112,7 @@
     "contact_info": "Contact info",
     "sticky_behavior": "Sticky behavior",
     "menu": "Menu",
+    "menu_handler": "Menu handler",
   },
   "info": {},
   "options": {
@@ -134,7 +136,9 @@
   },
   "category": {
     "header": "Header",
+    "footer": "Footer",
     "slideshow": "Slideshow",
+    "menu": "Menu",
   },
   "blocks": {
     "swiper_slider": {

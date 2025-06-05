@@ -1,4 +1,4 @@
-<site-header class="w-100 h-100 d-flex align-items-center" role="banner" aria-label="Site header">
+<site-header class="w-100 h-100 d-flex align-items-center" role="banner" aria-label="Site header" data-sticky-option="{{ section.settings.sticky_option }}">
   <div class="container">
     <nav id="desktop__nav" aria-label="Desktop navigation">
       <div class="row">
@@ -17,7 +17,7 @@
             <ul class="w-100 h-100 d-flex align-items-center list-unstyled menu-links gap-4" role="list">
               {%- for link in section.settings.menu.links -%}
                 <li class="menu-link-item" role="listitem">
-                  <a href="{{ link.url }}" class="menu-link">{{ link.title }}</a>
+                  <a href="{{ link.url }}" class="menu-link" data-hover-handler="{{ link.handle }}">{{ link.title }}</a>
                 </li>
               {%- endfor -%}
             </ul>
@@ -29,6 +29,7 @@
     <nav id="mobile__nav" aria-label="Mobile navigation">
     </nav>
   </div>
+  {%- content_for "blocks" -%}
 </site-header>
 
 {{ 'element-header.css' | asset_url | stylesheet_tag }}
@@ -46,23 +47,15 @@
   }
 </style>
 
-{%- javascript -%}
-  document.addEventListener('DOMContentLoaded', function() {
-    const header = document.querySelector('header');
-    if (header) {
-      header.classList.toggle('sticky', {{ section.settings.sticky_header }});
-    }
-  });
-{%- endjavascript -%}
-
 {%- schema -%}
 {
   "name": "t:name.header",
+  "blocks": [{ "type": "@theme" }],
   "tag": "header",
   "settings": [
     {
       "type": "select",
-      "id": "sticky",
+      "id": "sticky_option",
       "label": "t:label.sticky_behavior",
       "default": "always",
       "options": [
