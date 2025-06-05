@@ -11,10 +11,6 @@
   "type": "header",
   "name": "t:general.header",
   "sections": {
-    "header": {
-      "type": "header",
-      "settings": {}
-    },
     "announcement_bar_Mwbk4D": {
       "type": "announcement-bar",
       "blocks": {
@@ -61,15 +57,24 @@
       "block_order": [
         "swiper_slider_jamFU4"
       ],
-      "disabled": true,
       "name": "t:name.announcement_bar",
       "settings": {
         "enable": true,
         "min_height": 40,
-        "background_color": "#C2E5FF",
+        "background_color": "#c2e5ff",
         "text_color": "#293132",
         "enable_contact_info": true,
         "contact_info": "<p>Contact us at <a href=\"mailto:krutikmandaviya.gg@gmail.com\" title=\"contact-us-email\">krutikmandaviya.gg@gmail.com</a></p>"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "sticky": "always",
+        "min_height": 80,
+        "background_color": "#f1f5f9",
+        "text_color": "#293132",
+        "menu": "main-menu"
       }
     }
   },
