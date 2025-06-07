@@ -1,21 +1,14 @@
 <div class="dropdown-megamenu w-100 position-absolute top-100 start-0" data-menu-handler="{{ block.settings.menu_handler }}">
   <div class="container py-4">
     <div class="row">
-      <div class="col-md-3">
-        
-      </div>
-
-      <div class="col-md-3">
-        
-      </div>
-
-      <div class="col-md-3">
-        
-      </div>
-
-      <div class="col-md-3">
-        
-      </div>
+      {%- if block.settings.menu != blank -%}
+        {%- assign links = block.settings.menu.links -%}
+        {%- for link in links -%}
+          <div class="col-md-3">
+            {{ link.title | link_to: link.url }}
+          </div>    
+        {%- endfor -%}
+      {%- endif -%}
     </div>
   </div>
 </div>
@@ -54,6 +47,11 @@
       "id": "menu_handler",
       "label": "t:label.menu_handler",
     },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "t:label.menu"
+    }
   ],
   "presets": [
     {

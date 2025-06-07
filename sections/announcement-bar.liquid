@@ -3,7 +3,7 @@
   <div class="announcement-bar d-flex align-items-center py-1" role="region" aria-label="Announcements">
     <div class="container">
       <div class="row justify-content-end align-items-center text-center" id="announcement-bar__content">
-          <div class="col-12 col-lg-6" id="announcement-bar__text">
+          <div class="col-12 col-lg-6 {% if section.settings.enable_contact_info == false %}col-lg-12{% endif %}" id="announcement-bar__text">
             {%- content_for "blocks" -%}
           </div>
           {%- if section.settings.enable_contact_info and section.settings.contact_info != blank -%}

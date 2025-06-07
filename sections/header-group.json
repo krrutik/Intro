@@ -70,7 +70,6 @@
     "header": {
       "type": "header",
       "settings": {
-        "sticky": "always",
         "min_height": 80,
         "background_color": "#f1f5f9",
         "text_color": "#293132",

@@ -1,0 +1,321 @@
+{%- liquid
+  assign image = block.settings.image
+  assign image_alt = block.settings.image_alt | default: image.alt | escape
+  assign loading = block.settings.loading
+  assign sizes = block.settings.sizes | default: '100vw'
+  assign widths = block.settings.widths | default: '100, 200, 300, 400, 500, 600, 700, 800, 900, 1000'
+  assign crop_position = block.settings.crop_position | default: 'center'
+-%}
+
+{%- if image -%}
+  <div class="image-block" {{ block.shopify_attributes }}>
+    
+    {%- if block.settings.enable_link and block.settings.link != blank -%}
+      <a href="{{ block.settings.link }}" class="image-block__link">
+    {%- endif -%}
+    
+    <div class="image-block__container">
+      <img
+        src="{{ image | image_url: width: 1500 }}"
+        alt="{{ image_alt }}"
+        width="{{ image.width }}"
+        height="{{ image.height }}"
+        {%- if loading == 'lazy' -%}
+          loading="lazy"
+        {%- elsif loading == 'eager' -%}
+          loading="eager"
+        {%- endif -%}
+        {%- if block.settings.enable_srcset -%}
+          srcset="{%- for width in widths -%}
+            {%- assign width_int = width | times: 1 -%}
+            {%- if width_int <= image.width -%}
+              {{ image | image_url: width: width_int, crop: crop_position }} {{ width_int }}w
+              {%- unless forloop.last -%},{%- endunless -%}
+            {%- endif -%}
+          {%- endfor -%}"
+          sizes="{{ sizes }}"
+        {%- endif -%}
+        {%- if block.settings.object_fit -%}
+          style="object-fit: {{ block.settings.object_fit }}; object-position: {{ block.settings.object_position | default: 'center' }};"
+        {%- endif -%}
+        class="image-block__image
+               {%- if block.settings.image_style %} image-block__image--{{ block.settings.image_style }}{% endif -%}
+               {%- if block.settings.hover_effect %} image-block__image--hover-{{ block.settings.hover_effect }}{% endif -%}"
+      >
+      
+      {%- comment -%} Fallback for browsers that don't support srcset {%- endcomment -%}
+      {% comment %} <noscript>
+        <img
+          src="{{ image | image_url: width: 1500 }}"
+          alt="{{ image_alt }}"
+          width="{{ image.width }}"
+          height="{{ image.height }}"
+          class="image-block__image"
+        >
+      </noscript> {% endcomment %}
+    </div>
+    
+    {%- if block.settings.caption != blank -%}
+      <div class="image-block__caption">
+        {{ block.settings.caption }}
+      </div>
+    {%- endif -%}
+    
+    {%- if block.settings.enable_link and block.settings.link != blank -%}
+      </a>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Image Block",
+  "tag": "section",
+  "class": "section-image-block",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "info": "Leave blank to use alt text from image"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Image caption"
+    },
+    {
+      "type": "header",
+      "content": "Image sizing"
+    },
+    {
+      "type": "select",
+      "id": "object_fit",
+      "label": "Image fit",
+      "options": [
+        {
+          "value": "",
+          "label": "Default"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        },
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "fill",
+          "label": "Fill"
+        },
+        {
+          "value": "scale-down",
+          "label": "Scale down"
+        }
+      ],
+      "default": ""
+    },
+    {
+      "type": "select",
+      "id": "object_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "top left",
+          "label": "Top left"
+        },
+        {
+          "value": "top right",
+          "label": "Top right"
+        },
+        {
+          "value": "bottom left",
+          "label": "Bottom left"
+        },
+        {
+          "value": "bottom right",
+          "label": "Bottom right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "crop_position",
+      "label": "Crop position",
+      "options": [
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Performance & Responsive"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_srcset",
+      "label": "Enable responsive images",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_webp",
+      "label": "Enable WebP format",
+      "default": true,
+      "info": "Automatically serves WebP images when supported"
+    },
+    {
+      "type": "select",
+      "id": "loading",
+      "label": "Loading behavior",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Auto"
+        },
+        {
+          "value": "lazy",
+          "label": "Lazy load"
+        },
+        {
+          "value": "eager",
+          "label": "Load immediately"
+        }
+      ],
+      "default": "lazy"
+    },
+    {
+      "type": "text",
+      "id": "sizes",
+      "label": "Sizes attribute",
+      "default": "100vw",
+      "info": "Defines image sizes for different viewport widths"
+    },
+    {
+      "type": "text",
+      "id": "widths",
+      "label": "Image widths",
+      "default": "375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840",
+      "info": "Comma-separated list of image widths for srcset"
+    },
+    {
+      "type": "header",
+      "content": "Styling"
+    },
+    {
+      "type": "select",
+      "id": "image_style",
+      "label": "Image style",
+      "options": [
+        {
+          "value": "",
+          "label": "Default"
+        },
+        {
+          "value": "rounded",
+          "label": "Rounded corners"
+        },
+        {
+          "value": "circle",
+          "label": "Circle"
+        },
+        {
+          "value": "shadow",
+          "label": "Drop shadow"
+        }
+      ],
+      "default": ""
+    },
+    {
+      "type": "select",
+      "id": "hover_effect",
+      "label": "Hover effect",
+      "options": [
+        {
+          "value": "",
+          "label": "None"
+        },
+        {
+          "value": "zoom",
+          "label": "Zoom in"
+        },
+        {
+          "value": "fade",
+          "label": "Fade"
+        },
+        {
+          "value": "slide",
+          "label": "Slide"
+        }
+      ],
+      "default": ""
+    },
+    {
+      "type": "header",
+      "content": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_link",
+      "label": "Make image clickable",
+      "default": false
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Block"
+    }
+  ]
+}
+{% endschema %}

@@ -10,8 +10,42 @@
 {
   "sections": {
     "main": {
-      "type": "hello-world",
-      "settings": {}
+      "type": "hero",
+      "blocks": {
+        "content_HfeRmp": {
+          "type": "content",
+          "settings": {
+            "heading": "Welcome to our store",
+            "heading_color": "#000000",
+            "subheading": "Discover our amazing products and exceptional service",
+            "text_color": "#666666",
+            "button_text": "Shop Now",
+            "button_url": "",
+            "button_style": "primary",
+            "secondary_button_text": "",
+            "secondary_button_url": "",
+            "secondary_button_style": "outline-primary"
+          }
+        },
+        "hero_card_MgM7xC": {
+          "type": "hero-card",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/photo-1542640244-7e672d6cef4e.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "content_HfeRmp",
+        "hero_card_MgM7xC"
+      ],
+      "settings": {
+        "container_width": "container-fluid",
+        "section_height": 600,
+        "background_color": "#ffffff",
+        "media_type": "video",
+        "video": "shopify://files/videos/2772930-uhd_2560_1440_30fps.mp4"
+      }
     }
   },
   "order": [

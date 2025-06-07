@@ -23,7 +23,33 @@
             </ul>
           {%- endif -%}
         </div>
-        <div class="col-2"></div>
+        <div class="col-2">
+          <ul class="w-100 h-100 d-flex justify-content-end align-items-center list-unstyled menu-links menu-icon-links gap-2" role="list">
+            <li class="menu-link-item" role="listitem">
+              <a href="{{ routes.search_url }}" class="menu-link" aria-label="Search">
+                {{ 'icon-search.svg' | inline_asset_content }}
+                <span class="visually-hidden">Search</span>
+              </a>
+            </li>
+            <li class="menu-link-item" role="listitem">
+              <a href="{{ routes.account_url }}" class="menu-link" aria-label="Account">
+                {{ 'icon-account.svg' | inline_asset_content }}
+                <span class="visually-hidden">Account</span>
+              </a>
+            </li>
+            <li class="menu-link-item" role="listitem">
+              <a href="{{ routes.cart_url }}" class="menu-link d-flex" aria-label="Cart" data-drawer-toggle="cart">
+                <span class="cart-icon-wrapper">
+                  {{ 'icon-cart.svg' | inline_asset_content }}
+                  {% if cart.item_count > 0 %}
+                    <span class="cart-badge">{{ cart.item_count }}</span>
+                  {% endif %}
+                </span>
+                <span class="visually-hidden">Cart</span> 
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
     <nav id="mobile__nav" aria-label="Mobile navigation">

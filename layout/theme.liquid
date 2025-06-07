@@ -11,6 +11,8 @@
 
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
 
+    {%- render 'color-schemes' -%}
+
     {{ content_for_header }}
   </head>
 

@@ -31,6 +31,29 @@ header.is-visible {
     text-decoration: none;
 }
 
+.menu-icon-links .menu-link-item > .menu-link svg {
+  width: 24px;
+  height: 24px;
+}
+
+.cart-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 9999px;
+  line-height: 1;
+  font-weight: bold;
+}
+
 .dropdown-megamenu {
   display: none;
   opacity: 0;
