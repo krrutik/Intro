@@ -37,20 +37,6 @@
   {{ accent_font_italic | font_face: font_display: 'swap' }}
   {{ accent_font_bold_italic | font_face: font_display: 'swap' }}
 
-   /* Font families */
-  --font-body--family: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
-  --font-body--style: {{ settings.body_font.style }};
-  --font-body--weight: {{ settings.body_font.weight }};
-  --font-subheading--family: {{ settings.subheading_font.family }}, {{ settings.subheading_font.fallback_families }};
-  --font-subheading--style: {{ settings.subheading_font.style }};
-  --font-subheading--weight: {{ settings.subheading_font.weight }};
-  --font-heading--family: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
-  --font-heading--style: {{ settings.heading_font.style }};
-  --font-heading--weight: {{ settings.heading_font.weight }};
-  --font-accent--family: {{ settings.accent_font.family }}, {{ settings.accent_font.fallback_families }};
-  --font-accent--style: {{ settings.accent_font.style }};
-  --font-accent--weight: {{ settings.accent_font.weight }};
-
   :root {
     --font-primary--family: {{ settings.primary_font.family }}, {{ settings.primary_font.fallback_families }};
     --font-primary--style: {{ settings.primary_font.style }};
@@ -60,6 +46,20 @@
     --color-background: {{ settings.background_color }};
     --color-foreground: {{ settings.foreground_color }};
     --style-border-radius-inputs: {{ settings.input_corner_radius }}px;
+
+     /* Font families */
+    --font-body--family: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
+    --font-body--style: {{ settings.body_font.style }};
+    --font-body--weight: {{ settings.body_font.weight }};
+    --font-subheading--family: {{ settings.subheading_font.family }}, {{ settings.subheading_font.fallback_families }};
+    --font-subheading--style: {{ settings.subheading_font.style }};
+    --font-subheading--weight: {{ settings.subheading_font.weight }};
+    --font-heading--family: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
+    --font-heading--style: {{ settings.heading_font.style }};
+    --font-heading--weight: {{ settings.heading_font.weight }};
+    --font-accent--family: {{ settings.accent_font.family }}, {{ settings.accent_font.fallback_families }};
+    --font-accent--style: {{ settings.accent_font.style }};
+    --font-accent--weight: {{ settings.accent_font.weight }};
   
     /* Breakpoints */
     --bs-breakpoint-xs: 0;
