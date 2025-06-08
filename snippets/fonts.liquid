@@ -1,6 +1,6 @@
-{%- unless settings.type_body_font.system?
-  and settings.type_subheading_font.system?
-  and settings.type_heading_font.system?
+{%- unless settings.body_font.system?
+  and settings.subheading_font.system?
+  and settings.heading_font.system?
 -%}
   <link
     rel="preconnect"
@@ -10,38 +10,38 @@
 {%- endunless -%}
 
 {% # theme-check-disable %}
-{%- unless settings.type_body_font.system? -%}
+{%- unless settings.body_font.system? -%}
   <link
     rel="preload"
     as="font"
-    href="{{ settings.type_body_font | font_url }}"
+    href="{{ settings.body_font | font_url }}"
     type="font/woff2"
     crossorigin
   >
 {%- endunless -%}
-{%- unless settings.type_subheading_font.system? -%}
+{%- unless settings.subheading_font.system? -%}
   <link
     rel="preload"
     as="font"
-    href="{{ settings.type_subheading_font | font_url }}"
+    href="{{ settings.subheading_font | font_url }}"
     type="font/woff2"
     crossorigin
   >
 {%- endunless -%}
-{%- unless settings.type_heading_font.system? -%}
+{%- unless settings.heading_font.system? -%}
   <link
     rel="preload"
     as="font"
-    href="{{ settings.type_heading_font | font_url }}"
+    href="{{ settings.heading_font | font_url }}"
     type="font/woff2"
     crossorigin
   >
 {%- endunless -%}
-{%- unless settings.type_accent_font.system? -%}
+{%- unless settings.accent_font.system? -%}
   <link
     rel="preload"
     as="font"
-    href="{{ settings.type_accent_font | font_url }}"
+    href="{{ settings.accent_font | font_url }}"
     type="font/woff2"
     crossorigin
   >

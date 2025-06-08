@@ -38,15 +38,6 @@
   {{ accent_font_bold_italic | font_face: font_display: 'swap' }}
 
   :root {
-    --font-primary--family: {{ settings.primary_font.family }}, {{ settings.primary_font.fallback_families }};
-    --font-primary--style: {{ settings.primary_font.style }};
-    --font-primary--weight: {{ settings.primary_font.weight }};
-    --page-width: {{ settings.max_page_width }};
-    --page-margin: {{ settings.min_page_margin }}px;
-    --color-background: {{ settings.background_color }};
-    --color-foreground: {{ settings.foreground_color }};
-    --style-border-radius-inputs: {{ settings.input_corner_radius }}px;
-
      /* Font families */
     --font-body--family: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
     --font-body--style: {{ settings.body_font.style }};
