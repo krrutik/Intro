@@ -346,6 +346,30 @@
         "content": "t:content.paragraph"
       },
       {
+        "type": "select",
+        "id": "font_paragraph",
+        "label": "t:general.font_family",
+        "options": [
+          {
+            "value": "heading",
+            "label": "t:general.heading"
+          },
+          {
+            "value": "subheading",
+            "label": "t:general.subheading"
+          },
+          {
+            "value": "accent",
+            "label": "t:general.accent"
+          },
+          {
+            "value": "body",
+            "label": "t:general.body"
+          }
+        ],
+        "default": "body"
+      },
+      {
         "type": "number",
         "id": "size_paragraph",
         "label": "t:general.font_size",

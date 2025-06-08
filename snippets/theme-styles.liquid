@@ -72,5 +72,89 @@
     --letter-spacing-wide: 0.025em;
     --letter-spacing-wider: 0.05em;
     --letter-spacing-widest: 0.1em;
+
+    /* Text transform values */
+    --text-transform-uppercase: uppercase;
+    --text-transform-lowercase: lowercase;
+    --text-transform-capitalize: capitalize;
+    --text-transform-none: none;
+    
+    {% liquid
+      assign tags = "paragraph,h1,h2,h3,h4,h5,h6" | split: ","
+      for tag in tags
+        assign font_key = 'font_' | append: tag
+        assign letter_spacing_key = 'letter_spacing_' | append: tag
+        assign text_transform_key = 'text_transform_' | append: tag
+
+        echo '--font-' | append: tag | append: '--family' | append: ': ' | append: 'var(--font-' | append: settings[font_key] | append: '--family)' | append: ';'
+        echo '--font-' | append: tag | append: '--style' | append: ': ' | append: 'var(--font-' | append: settings[font_key] | append: '--style)' | append: ';'
+        echo '--font-' | append: tag | append: '--weight' | append: ': ' | append: 'var(--font-' | append: settings[font_key] | append: '--weight)' | append: ';'
+        echo '--font-' | append: tag | append: '--letter-spacing' | append: ': ' | append: 'var(--letter-spacing-' | append: settings[letter_spacing_key] | append: ')' | append: ';'
+        echo '--font-' | append: tag | append: '--case' | append: ': ' | append: 'var(--text-transform-' | append: settings[text_transform_key] | append: ')' | append: ';'
+      endfor
+    %}
+
+    {% assign tags = "paragraph,h1,h2,h3,h4,h5,h6" | split: "," %}
+
+    {%- assign viewport_min = 576 %}
+    {%- assign viewport_max = 1400 %}
+    {%- assign viewport_range = viewport_max | minus: viewport_min %}
+    {% for tag in tags %}
+      {%- assign size_key = "size_" | append: tag %}
+      {%- assign lh_key = "line_height_" | append: tag %}
+
+      {%- assign font_max = settings[size_key] %}
+      {%- assign font_min = font_max | times: 0.75 %}
+
+      {%- assign lh_option = settings[lh_key] | default: "normal" %}
+      {% case lh_option %}
+        {% when "tight" %}{% assign lh_mult = 1.1 %}
+        {% when "normal" %}{% assign lh_mult = 1.4 %}
+        {% when "relaxed" %}{% assign lh_mult = 1.6 %}
+        {% when "loose" %}{% assign lh_mult = 1.8 %}
+        {% else %}{% assign lh_mult = 1.4 %}
+      {% endcase %}
+
+      {%- assign slope = font_max | minus: font_min | divided_by: viewport_range %}
+      {%- assign vw = slope | times: 100 %}
+      {% assign viewport_min_times = viewport_min | times: slope %}
+      {%- assign offset_px = font_min | minus: viewport_min_times %}
+      {%- assign offset_rem = offset_px | divided_by: 16.00 %}
+      {%- assign min_rem = font_min | divided_by: 16.00 %}
+      {%- assign max_rem = font_max | divided_by: 16.00 %}
+
+      {%- assign lh_min_px = font_min | times: lh_mult %}
+      {%- assign lh_max_px = font_max | times: lh_mult %}
+      {%- assign lh_slope = lh_max_px | minus: lh_min_px | divided_by: viewport_range %}
+      {%- assign lh_vw = lh_slope | times: 100 %}
+      {%- assign lh_viewport_min_times = viewport_min | times: lh_slope %}
+      {%- assign lh_offset_px = lh_min_px | minus: lh_viewport_min_times %}
+      {%- assign lh_offset_rem = lh_offset_px | divided_by: 16.00 %}
+      {%- assign lh_min_rem = lh_min_px | divided_by: 16.00 %}
+      {%- assign lh_max_rem = lh_max_px | divided_by: 16.00 %}
+
+      --font-{{ tag }}--size: clamp({{ min_rem | round: 3 }}rem, {{ vw | round: 3 }}vw + {{ offset_rem | round: 3 }}rem, {{ max_rem | round: 3 }}rem);
+      --font-{{ tag }}--line-height: clamp({{ lh_min_rem | round: 3 }}rem, {{ lh_vw | round: 3 }}vw + {{ lh_offset_rem | round: 3 }}rem, {{ lh_max_rem | round: 3 }}rem);
+    {% endfor %}
   }
+
+  {% liquid 
+    assign tags = "paragraph,h1,h2,h3,h4,h5,h6" | split: ","
+    for tag in tags
+      assign font_key = 'font_' | append: tag
+      assign letter_spacing_key = 'letter_spacing_' | append: tag
+      assign text_transform_key = 'text_transform_' | append: tag
+
+      echo tag | append: ',' | append: ' .' | append: tag | append: ' {'
+      echo '  font-family: var(--font-' | append: settings[font_key] | append: '--family);'
+      echo '  font-style: var(--font-' | append: settings[font_key] | append: '--style);'
+      echo '  font-weight: var(--font-' | append: settings[font_key] | append: '--weight);'
+      echo '  font-size: var(--font-' | append: tag | append: '--size' | append: ');'
+      echo '  line-height: var(--font-' | append: tag | append: '--line-height);'
+      echo '  letter-spacing: var(--letter-spacing-' | append: settings[letter_spacing_key] | append: ');'
+      echo '  text-transform: var(--text-transform-' | append: settings[text_transform_key] | append: ');'
+      echo '  color: var(--color), var(--font-' | append: tag | append: '--color' | append: ');'
+      echo '}'
+    endfor
+  %}
 {% endstyle %}
