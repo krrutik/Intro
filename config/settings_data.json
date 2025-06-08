@@ -19,9 +19,9 @@
     "color_schemes": {
       "scheme-bc86cbdd-93e5-446b-89c4-6dcc8f28f4b3": {
         "settings": {
-          "background": "rgba(0,0,0,0)",
+          "background": "#fff6f4",
           "foreground_heading": "#000000",
-          "foreground": "#000000",
+          "foreground": "#24162b",
           "primary": "#000000",
           "primary_hover": "#00000087",
           "border": "#e6e6e6",
